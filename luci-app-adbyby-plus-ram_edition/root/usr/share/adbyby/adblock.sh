@@ -11,7 +11,7 @@
 
 	if [ "$(uci -q get adbyby.@adbyby[0].wan_mode)" == "1" ];then
 		rm -f /tmp/dnsmasq.adblock
-		wget -O- https://cdn.jsdelivr.net/gh/small-5/adbyby/easylistchina%2Beasylist.txt | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/0\.0\.0\.0:' > /tmp/dnsmasq.adblock || \
+		wget -O- https://dev.tencent.com/u/Small_5/p/adbyby/git/raw/master/easylistchina%2Beasylist.txt | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/0\.0\.0\.0:' > /tmp/dnsmasq.adblock || \
 		wget -O- https://easylist-downloads.adblockplus.org/easylistchina+easylist.txt | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/0\.0\.0\.0:' > /tmp/dnsmasq.adblock
 		if [ -s "/tmp/dnsmasq.adblock" ];then
 			sed -i '/youku.com/d' /tmp/dnsmasq.adblock
