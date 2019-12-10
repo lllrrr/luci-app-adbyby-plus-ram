@@ -36,12 +36,12 @@
 	if [ "$(uci -q get adbyby.@adbyby[0].wan_mode)" == "1" ];then
 		mkdir -p /tmp/adbyby/adbyby_adblock
 		while : ; do
-			wget-ssl -T 3 -O /tmp/adbyby/adbyby_adblock/dnsmasq.adblock https://cdn.jsdelivr.net/gh/small-5/adbyby/dnsmasq.adblock
+			wget-ssl -T 3 -O /tmp/adbyby/adbyby_adblock/dnsmasq.adblock https://dev.tencent.com/u/Small_5/p/adbyby/git/raw/master/dnsmasq.adblock
 			[ "$?" == "0" ] && break || sleep 2
 		done
 
 		while : ; do
-			wget-ssl -T 3 -O /tmp/adbyby/adbyby_adblock/md5 https://cdn.jsdelivr.net/gh/small-5/adbyby/md5_1
+			wget-ssl -T 3 -O /tmp/adbyby/adbyby_adblock/md5 https://dev.tencent.com/u/Small_5/p/adbyby/git/raw/master/md5_1
 			[ "$?" == "0" ] && break || sleep 2
 		done
 
