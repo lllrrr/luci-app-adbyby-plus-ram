@@ -11,8 +11,8 @@
 
 	if [ "$(uci -q get adbyby.@adbyby[0].wan_mode)" == "1" ];then
 		rm -f /tmp/dnsmasq.adblock
-		wget-ssl -O- https://small_5.coding.net/p/adbyby/d/adbyby/git/raw/master/easylistchina%2Beasylist.txt | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/0\.0\.0\.0:' > /tmp/dnsmasq.adblock || \
-		wget-ssl -O- https://easylist-downloads.adblockplus.org/easylistchina+easylist.txt | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/0\.0\.0\.0:' > /tmp/dnsmasq.adblock
+		wget-ssl --no-hsts -O- https://small_5.coding.net/p/adbyby/d/adbyby/git/raw/master/easylistchina%2Beasylist.txt | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/0\.0\.0\.0:' > /tmp/dnsmasq.adblock || \
+		wget-ssl --no-hsts -O- https://easylist-downloads.adblockplus.org/easylistchina+easylist.txt | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/0\.0\.0\.0:' > /tmp/dnsmasq.adblock
 		if [ -s "/tmp/dnsmasq.adblock" ];then
 			sed -i '/youku.com/d' /tmp/dnsmasq.adblock
 			if ( ! cmp -s /tmp/dnsmasq.adblock /tmp/adbyby/adbyby_adblock/dnsmasq.adblock );then

@@ -12,7 +12,7 @@
 
 	if [ "$(head -1 /usr/share/adbyby/data/lazy.txt | awk -F' ' '{print $3,$4}')" == "2017-1-2 00:12:25" ];then
 		while : ; do
-			wget-ssl -T 3 -O /tmp/lazy.txt https://cdn.jsdelivr.net/gh/adbyby/xwhyc-rules/lazy.txt
+			wget-ssl --no-hsts -T 3 -O /tmp/lazy.txt https://cdn.jsdelivr.net/gh/adbyby/xwhyc-rules/lazy.txt
 			if [ "$?" == "0" ];then
 				cp -f /tmp/lazy.txt /usr/share/adbyby/data/lazy.txt
 				rm -f /tmp/lazy.txt
@@ -22,7 +22,7 @@
 			fi
 		done
 		while : ; do
-			wget-ssl -T 3 -O /tmp/video.txt https://cdn.jsdelivr.net/gh/adbyby/xwhyc-rules/video.txt
+			wget-ssl --no-hsts -T 3 -O /tmp/video.txt https://cdn.jsdelivr.net/gh/adbyby/xwhyc-rules/video.txt
 			if [ "$?" == "0" ];then
 				cp -f /tmp/video.txt /usr/share/adbyby/data/video.txt
 				rm -f /tmp/video.txt
@@ -36,12 +36,12 @@
 	if [ "$(uci -q get adbyby.@adbyby[0].wan_mode)" == "1" ];then
 		mkdir -p /tmp/adbyby/adbyby_adblock
 		while : ; do
-			wget-ssl -T 3 -O /tmp/adbyby/adbyby_adblock/dnsmasq.adblock https://small_5.coding.net/p/adbyby/d/adbyby/git/raw/master/dnsmasq.adblock
+			wget-ssl --no-hsts -T 3 -O /tmp/adbyby/adbyby_adblock/dnsmasq.adblock https://small_5.coding.net/p/adbyby/d/adbyby/git/raw/master/dnsmasq.adblock
 			[ "$?" == "0" ] && break || sleep 2
 		done
 
 		while : ; do
-			wget-ssl -T 3 -O /tmp/adbyby/adbyby_adblock/md5 https://small_5.coding.net/p/adbyby/d/adbyby/git/raw/master/md5_1
+			wget-ssl --no-hsts -T 3 -O /tmp/adbyby/adbyby_adblock/md5 https://small_5.coding.net/p/adbyby/d/adbyby/git/raw/master/md5_1
 			[ "$?" == "0" ] && break || sleep 2
 		done
 

@@ -12,7 +12,7 @@ B=0
 	fi
 
 	md5sum /usr/share/adbyby/data/lazy.txt /usr/share/adbyby/data/video.txt > /tmp/local-md5.json
-	wget-ssl -O /tmp/md5.json https://cdn.jsdelivr.net/gh/adbyby/xwhyc-rules/md5.json || wget-ssl -O /tmp/md5.json https://raw.githubusercontent.com/adbyby/xwhyc-rules/master/md5.json
+	wget-ssl --no-hsts -O /tmp/md5.json https://cdn.jsdelivr.net/gh/adbyby/xwhyc-rules/md5.json || wget-ssl --no-hsts -O /tmp/md5.json https://raw.githubusercontent.com/adbyby/xwhyc-rules/master/md5.json
 	if [ -s "/tmp/md5.json" ];then
 		lazy_local=$(grep 'lazy' /tmp/local-md5.json | awk -F' ' '{print $1}')
 		video_local=$(grep 'video' /tmp/local-md5.json | awk -F' ' '{print $1}')  
@@ -20,7 +20,7 @@ B=0
 		video_online=$(sed  's/":"/\n/g' /tmp/md5.json  |  sed  's/","/\n/g' | sed -n '4p')
 		if [ "$lazy_online"x != "$lazy_local"x ];then
 			rm -f /usr/share/adbyby/data/*.bak /tmp/lazy.txt
-			wget-ssl -O /tmp/lazy.txt https://cdn.jsdelivr.net/gh/adbyby/xwhyc-rules/lazy.txt || wget-ssl -O /tmp/lazy.txt https://raw.githubusercontent.com/adbyby/xwhyc-rules/master/lazy.txt
+			wget-ssl --no-hsts -O /tmp/lazy.txt https://cdn.jsdelivr.net/gh/adbyby/xwhyc-rules/lazy.txt || wget-ssl --no-hsts -O /tmp/lazy.txt https://raw.githubusercontent.com/adbyby/xwhyc-rules/master/lazy.txt
 			cp -f /tmp/lazy.txt /usr/share/adbyby/data/lazy.txt
 			rm -f /tmp/lazy.txt
 			echo $(date +"%Y-%m-%d %H:%M:%S") > /tmp/adbyby.updated
@@ -28,7 +28,7 @@ B=0
 		fi
 		if [ "$video_online"x != "$video_local"x ];then
 			rm -f /usr/share/adbyby/data/*.bak /tmp/video.txt
-			wget-ssl -O /tmp/video.txt https://cdn.jsdelivr.net/gh/adbyby/xwhyc-rules/video.txt || wget-ssl -O /tmp/video.txt https://raw.githubusercontent.com/adbyby/xwhyc-rules/master/video.txt
+			wget-ssl --no-hsts -O /tmp/video.txt https://cdn.jsdelivr.net/gh/adbyby/xwhyc-rules/video.txt || wget-ssl --no-hsts -O /tmp/video.txt https://raw.githubusercontent.com/adbyby/xwhyc-rules/master/video.txt
 			cp -f /tmp/video.txt /usr/share/adbyby/data/video.txt
 			rm -f /tmp/video.txt
 			echo $(date +"%Y-%m-%d %H:%M:%S") > /tmp/adbyby.updated
